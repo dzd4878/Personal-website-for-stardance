@@ -43,7 +43,7 @@
 
             <article class="project-card">
               <div class="project-media">
-                <img src="CoralEye-cover.png" alt="CoralEye cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
+                <img src="img/CoralEye-cover.png" alt="CoralEye cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
                 <span class="poster-fallback">NO<br>IMAGE</span>
               </div>
               <div class="project-info">
@@ -51,17 +51,17 @@
                   <h3 class="project-title">CoralEye</h3>
                   <span class="status-badge finished">FINISHED</span>
                 </div>
-                <details class="project-details">
-                  <summary>read more</summary>
-                  <p class="project-description">CoralEye is a decentralized, edge-optimized computer vision framework that diagnoses coral health in real time and is designed to eventually run entirely offline on consumer-grade hardware. CoralEye uses an optimized MobileNetV2 architecture, quantized to INT8 for edge deployment, trained on a curated subset of the Benthic Habitat Data (BHD) dataset to classify reef imagery into a three-class triage system — Healthy, Bleached, and Dead. On a held-out test set of 636 images, the framework achieved an overall accuracy of 97% (weighted-average precision 0.98, recall 0.97, F1-score 0.97) while processing underwater imagery at an average latency of 177 milliseconds per frame (∼5.6 FPS), benchmarked in a Google Colab CPU-only cloud runtime as a proxy for offline, GPU-free edge hardware.</p>
-                </details>
-                <a class="button" href="https://www.researchsquare.com/article/rs-10438827/latest" target="_blank" rel="noopener noreferrer">READ THE PAPER →</a>
+                <div class="desc-wrap">
+                  <p class="project-description clamp" id="project-description-coraleye">Coral reefs across the Coral Triangle are experiencing unprecedented thermal stress, and the window for effective local mitigation of bleaching events is often measured in days, not months. Yet the standard reef-monitoring pipeline — collecting benthic imagery via divers or remotely operated vehicles (ROVs) and manually annotating it for signs of bleaching — routinely takes weeks to complete, a delay we term the manual-annotation bottleneck. This paper presents CoralEye, a decentralized, edge-optimized computer vision framework that diagnoses coral health in real time and is designed to eventually run entirely offline on consumer-grade hardware. CoralEye uses an optimized MobileNetV2 architecture, quantized to INT8 for edge deployment, trained on a curated subset of the Benthic Habitat Data (BHD) dataset to classify reef imagery into a three-class triage system — Healthy, Bleached, and Dead. On a held-out test set of 636 images, the framework achieved an overall accuracy of 97% (weighted-average precision 0.98, recall 0.97, F1-score 0.97) while processing underwater imagery at an average latency of 177 milliseconds per frame (∼5.6 FPS), benchmarked in a Google Colab CPU-only cloud runtime as a proxy for offline, GPU-free edge hardware. Relative to established manual annotation workflows such as Coral Point Count (CPCe), this proxy benchmark suggests a reduction in per-image processing time of over 99%, though this comparison has not yet been validated on a physical field device. We argue that this combination of accuracy and CPU-only efficiency is a promising step toward a shift in marine conservation technology from post-mortem documentation toward real-time, actionable diagnostics — particularly for under-resourced reef managers in bandwidth-constrained coastal communities, pending further validation on physical field hardware.</p>
+                  <button class="read-more-btn" data-target="project-description-coraleye" aria-expanded="false">▸ read more</button>
+                  <a class="button" href="https://www.researchsquare.com/article/rs-10438827/latest" target="_blank" rel="noopener noreferrer">READ THE PAPER →</a>
+                </div>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-media">
-                <img src="PiPod-cover.png" alt="PiPod cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
+                <img src="img/PiPod-cover.png" alt="PiPod cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
                 <span class="poster-fallback">NO<br>IMAGE</span>
               </div>
               <div class="project-info">
@@ -69,14 +69,16 @@
                   <h3 class="project-title">PiPod</h3>
                   <span class="status-badge progress">IN PROGRESS</span>
                 </div>
-                <p class="project-description">The PiPod is a relatively compact (94mm × 60mm × 25mm) device with a battery life of up to 10 hours, capable of playing FLAC audio files without distortion.</p>
-                <a class="button" href="https://www.github.com/gabexbrayat/pipod" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB →</a>
+                <div class="desc-wrap">
+                  <p class="project-description">The PiPod is a relatively compact (94mm × 60mm × 25mm) device with a battery life of up to 10 hours, capable of playing FLAC audio files without distortion.</p>
+                  <a class="button" href="https://www.github.com/gabexbrayat/pipod" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB →</a>
+                </div>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-media">
-                <img src="CoralPod-cover.png" alt="Coral pod cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
+                <img src="img/CoralPod-cover.png" alt="Coral pod cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
                 <span class="poster-fallback">NO<br>IMAGE</span>
               </div>
               <div class="project-info">
@@ -84,8 +86,10 @@
                   <h3 class="project-title">Coral Pod</h3>
                   <span class="status-badge progress">IN PROGRESS</span>
                 </div>
-                <p class="project-description">A device intended for underwater coral monitoring and data collection, to cartography coral bleaching events.</p>
-                <a class="button" href="#" onclick="return false;">LINK COMING SOON</a>
+                <div class="desc-wrap">
+                  <p class="project-description">A device intended for underwater coral monitoring and data collection, to cartography coral bleaching events.</p>
+                  <a class="button" href="#" onclick="return false;">LINK COMING SOON</a>
+                </div>
               </div>
             </article>
 
@@ -178,6 +182,18 @@
   }
   updateClock();
   setInterval(updateClock, 1000 * 15);
+
+  // ---------- read more / less toggles ----------
+  document.querySelectorAll('.read-more-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const targetId = btn.getAttribute('data-target');
+      const desc = document.getElementById(targetId);
+      if (!desc) return;
+      const isExpanded = desc.classList.toggle('expanded');
+      btn.textContent = isExpanded ? '▾ read less' : '▸ read more';
+      btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    });
+  });
 })();
 </script>
 </body>

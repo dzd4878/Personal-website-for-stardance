@@ -40,24 +40,25 @@
           <div class="contact-section">
             <div class="contact-card">
               <div class="avatar-frame">
-                <img src="me frl.png" alt="Gabriel-Andre Exbrayat">
+                <img src="img/me frl.png" alt="Gabriel-Andre Exbrayat">
               </div>
               <div class="contact-panel">
                 <p class="contact-copy">Have a question or idea? Drop a line and I’ll get back soon.</p>
-                <form class="contact-form" action="mailto:exbrayat.gabriel-andre@google.com" method="post" enctype="text/plain">
+                <form class="contact-form" id="contact-form">
                   <label>
                     <span>Name</span>
-                    <input type="text" name="Name" placeholder="Your name" required>
+                    <input type="text" name="Name" id="cf-name" placeholder="Your name" required>
                   </label>
                   <label>
                     <span>Email</span>
-                    <input type="email" name="Email" placeholder="you@example.com" required>
+                    <input type="email" name="Email" id="cf-email" placeholder="you@example.com" required>
                   </label>
                   <label>
                     <span>Message</span>
-                    <textarea name="Message" placeholder="Write your message here..." required></textarea>
+                    <textarea name="Message" id="cf-message" placeholder="Write your message here..." required></textarea>
                   </label>
                   <button type="submit">Send message</button>
+                  <p class="form-status" id="form-status"></p>
                 </form>
                 <div class="social-buttons">
                   <button onclick="window.location.href='https://www.instagram.com/gab.exbrayat/'">
@@ -67,6 +68,7 @@
                   <button onclick="window.location.href='mailto:exbrayat.gabriel-andre@google.com'">✉ Contact Me</button>
                 </div>
               </div>
+            </div>
           </div>
         </section>
       </main>
@@ -74,7 +76,7 @@
   </div>
 
   <footer class="page-footer">
-    <p>&copy; A web page, what would you gain from stealing it?</p>
+    <h2>&copy; A web page, what would you gain from stealing it?</h2>
   </footer>
 
   <div class="start-menu" id="start-menu">
@@ -115,7 +117,7 @@
 
   // ---------- toolbar: reload / home / back / forward ----------
   document.getElementById('btn-reload').addEventListener('click', function(){ window.location.reload(); });
-  document.getElementById('btn-home').addEventListener('click', function(){ window.location.hash = 'home'; });
+  document.getElementById('btn-home').addEventListener('click', function(){ window.location.href = 'index.html'; });
   document.getElementById('btn-back').addEventListener('click', function(){ window.history.back(); });
   document.getElementById('btn-fwd').addEventListener('click', function(){ window.history.forward(); });
 
@@ -153,6 +155,36 @@
   }
   updateClock();
   setInterval(updateClock, 1000 * 15);
+
+  // ---------- contact form ----------
+  // Native <form action="mailto:..."> submission is unreliable across
+  // browsers (garbled bodies, silent no-ops on devices without a default
+  // mail app). Building the mailto: link ourselves is more consistent,
+  // and lets us show the person what actually happened.
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+      const statusEl = document.getElementById('form-status');
+
+      if (!name || !email || !message){
+        statusEl.textContent = 'Please fill in every field.';
+        statusEl.classList.add('is-error');
+        return;
+      }
+
+      const subject = encodeURIComponent('Message from ' + name + ' — gabsmojodojo.zine');
+      const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+      const mailtoLink = 'mailto:exbrayat.gabriel-andre@google.com?subject=' + subject + '&body=' + body;
+
+      statusEl.classList.remove('is-error');
+      statusEl.textContent = 'Opening your email app... if nothing happens, email me directly instead.';
+      window.location.href = mailtoLink;
+    });
+  }
 })();
 </script>
 </body>
