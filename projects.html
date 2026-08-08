@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gab's Mojo Dojo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="browser-frame">
+    <div class="tab-strip">
+      <div class="tab">🌐 gab's mojo dojo</div>
+    </div>
+    <div class="toolbar">
+      <button id="btn-back" title="Back">←</button>
+      <button id="btn-fwd" title="Forward">→</button>
+      <button id="btn-reload" title="Reload">⟳</button>
+      <button id="btn-home" title="index.html">⌂</button>
+      <div class="address-bar"><span class="lock">🔒</span><span id="url-text">gabsmojodojo.zine/projects.html</span></div>
+    </div>
+    <nav class="bookmarks-bar" id="bookmarks-bar">
+      <a href="index.html">Home</a>
+      <a href="index.html">About</a>
+      <a href="Contact.html">Contact</a>
+      <a href="projects.html" class="is-current">Projects</a>
+      <a href="https://www.researchsquare.com/article/rs-10438827/latest" target="_blank" rel="noopener noreferrer">Research paper ↗</a>
+      <a href="some music.html">Some music</a>
+      <a href="movie.html">Some movies</a>
+    </nav>
+
+    <div class="browser-content">
+      <main>
+
+        <section id="projects">
+          <p class="kicker">03 — projects</p>
+          <h2>My Latest Projects</h2>
+
+          <div class="project-list">
+
+            <article class="project-card">
+              <div class="project-media">
+                <img src="CoralEye-cover.png" alt="CoralEye cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
+                <span class="poster-fallback">NO<br>IMAGE</span>
+              </div>
+              <div class="project-info">
+                <div class="project-heading">
+                  <h3 class="project-title">CoralEye</h3>
+                  <span class="status-badge finished">FINISHED</span>
+                </div>
+                <details class="project-details">
+                  <summary>read more</summary>
+                  <p class="project-description">CoralEye is a decentralized, edge-optimized computer vision framework that diagnoses coral health in real time and is designed to eventually run entirely offline on consumer-grade hardware. CoralEye uses an optimized MobileNetV2 architecture, quantized to INT8 for edge deployment, trained on a curated subset of the Benthic Habitat Data (BHD) dataset to classify reef imagery into a three-class triage system — Healthy, Bleached, and Dead. On a held-out test set of 636 images, the framework achieved an overall accuracy of 97% (weighted-average precision 0.98, recall 0.97, F1-score 0.97) while processing underwater imagery at an average latency of 177 milliseconds per frame (∼5.6 FPS), benchmarked in a Google Colab CPU-only cloud runtime as a proxy for offline, GPU-free edge hardware.</p>
+                </details>
+                <a class="button" href="https://www.researchsquare.com/article/rs-10438827/latest" target="_blank" rel="noopener noreferrer">READ THE PAPER →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img src="PiPod-cover.png" alt="PiPod cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
+                <span class="poster-fallback">NO<br>IMAGE</span>
+              </div>
+              <div class="project-info">
+                <div class="project-heading">
+                  <h3 class="project-title">PiPod</h3>
+                  <span class="status-badge progress">IN PROGRESS</span>
+                </div>
+                <p class="project-description">The PiPod is a relatively compact (94mm × 60mm × 25mm) device with a battery life of up to 10 hours, capable of playing FLAC audio files without distortion.</p>
+                <a class="button" href="https://www.github.com/gabexbrayat/pipod" target="_blank" rel="noopener noreferrer">VIEW ON GITHUB →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img src="CoralPod-cover.png" alt="Coral pod cover image" onerror="this.closest('.project-media').classList.add('is-empty')">
+                <span class="poster-fallback">NO<br>IMAGE</span>
+              </div>
+              <div class="project-info">
+                <div class="project-heading">
+                  <h3 class="project-title">Coral Pod</h3>
+                  <span class="status-badge progress">IN PROGRESS</span>
+                </div>
+                <p class="project-description">A device intended for underwater coral monitoring and data collection, to cartography coral bleaching events.</p>
+                <a class="button" href="#" onclick="return false;">LINK COMING SOON</a>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <h3>&copy; A web page, what would you gain from stealing it?</h3>
+  </footer>
+
+  <div class="start-menu" id="start-menu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="Contact.html">Contact</a>
+    <a href="projects.html">Projects</a>
+    <a href="https://www.researchsquare.com/article/rs-10438827/latest" target="_blank" rel="noopener noreferrer">Research paper ↗</a>
+    <a href="some music.html">Some music</a>
+    <a href="movie.html">Some movies</a>
+  </div>
+
+  <nav class="bottom-bar">
+    <button class="start-btn" id="start-btn">☰ MENU</button>
+    <div class="bar-sep"></div>
+    <div class="status-marquee"><div class="status-marquee-track" id="status-marquee-track"></div></div>
+    <div class="bar-sep"></div>
+    <div class="tray">
+      <div class="tray-clock" id="tray-clock">00:00 AM</div>
+    </div>
+  </nav>
+
+<script>
+(function(){
+  // ---------- start menu ----------
+  const startBtn = document.getElementById('start-btn');
+  const startMenu = document.getElementById('start-menu');
+  startBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    startMenu.classList.toggle('is-open');
+  });
+  document.addEventListener('click', function(e){
+    if (!startMenu.contains(e.target) && e.target !== startBtn) startMenu.classList.remove('is-open');
+  });
+  startMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ startMenu.classList.remove('is-open'); });
+  });
+
+  // ---------- toolbar: reload / home / back / forward ----------
+  document.getElementById('btn-reload').addEventListener('click', function(){ window.location.reload(); });
+  document.getElementById('btn-home').addEventListener('click', function(){ window.location.href = 'index.html'; });
+  document.getElementById('btn-back').addEventListener('click', function(){ window.history.back(); });
+  document.getElementById('btn-fwd').addEventListener('click', function(){ window.history.forward(); });
+
+  // ---------- address bar + bookmark highlight follow the hash ----------
+  const urlText = document.getElementById('url-text');
+  const bookmarks = document.querySelectorAll('.bookmarks-bar a[href^="#"]');
+  function syncToHash(){
+    const hash = window.location.hash || '#home';
+    if (bookmarks.length){
+      urlText.textContent = 'gabsmojodojo.zine/' + hash;
+    }
+    bookmarks.forEach(function(a){
+      a.classList.toggle('is-current', a.getAttribute('href') === hash);
+    });
+  }
+  window.addEventListener('hashchange', syncToHash);
+  syncToHash();
+
+  // ---------- status bar marquee ----------
+  const msgs = ['★ WELCOME TO GAB\'S MOJO DOJO ★', 'STATUS: STILL EDITING BEFORE COLLEGE APP', 'SIGNAL: STRONG', 'SCROLL FOR MORE →'];
+  const track = document.getElementById('status-marquee-track');
+  msgs.concat(msgs).forEach(function(t){
+    const span = document.createElement('span');
+    span.textContent = t;
+    track.appendChild(span);
+  });
+
+  // ---------- clock ----------
+  function updateClock(){
+    const el = document.getElementById('tray-clock');
+    const now = new Date();
+    let h = now.getHours();
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if (h === 0) h = 12;
+    el.textContent = h + ':' + m + ' ' + ampm;
+  }
+  updateClock();
+  setInterval(updateClock, 1000 * 15);
+})();
+</script>
+</body>
+</html>
